@@ -37,6 +37,14 @@ form.addEventListener("submit", (e) => {
     let output = 0;
     const timer = setInterval(() => {
         finalScore.textContent = `${Math.floor(output)}%`;
+
+        // to style the finalScore and if user scores < 40 then its red and that means failed
+        if(output < 40){
+            finalScore.style.color = 'red';
+        }else{
+            finalScore.style.color = '#62e133';
+        }
+
         if(output === Math.floor(score)){
             clearInterval(timer);
         }else{

@@ -6,7 +6,7 @@ const scoreArea = document.querySelector(".scoreArea");
 const finalScore = document.querySelector(".finalScore");
 
 // Array of all the correct answers
-const correctAnswers = ['D','A','A','B','D','D','B','B','A','C'];
+const correctAnswers = ['A','B','C','D','B','A','C','B','A','C'];
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();

@@ -19,36 +19,41 @@ form.addEventListener("submit", (e) => {
 
     // looping thru the userAnswers..index so that correctAnswer and userAnswer both match and the 'answer' is just name we gave for a given value in the userAnswers
     userAnswers.forEach((answer,index) => {
-        if(answer === correctAnswers[index]){
+        if(answer === correctAnswers[index]){ // we are checking each answer user gives and comparing it with the index of the correctAnswers
             score += 10;
         }
     });
 
-    // show score
     scrollTo({
         top: 0,
         left: 0,
         behavior: 'smooth'
     }) // here we mean window.scrollTo but we didnt type window cz its automatically infered and 0,0 means x,y coordinates and we type it first because we want to scroll to the top and then show the result
-
+    
+    // show score
     scoreArea.classList.remove("hidden");
 
     // animating the score
     let output = 0;
-    const timer = setInterval(() => {
-        finalScore.textContent = `${Math.floor(output)}%`;
 
-        // to style the finalScore and if user scores < 40 then its red and that means failed
-        if(output < 40){
-            finalScore.style.color = 'red';
-        }else{
-            finalScore.style.color = '#62e133';
-        }
+    // I put this in setTimeout() because I want the animation of the score to start after user gets to the top
+    setTimeout(() => {
+        const timer = setInterval(() => {
+            finalScore.textContent = `${Math.floor(output)}%`;
+    
+            // to style the finalScore and if user scores < 40 then its red and that means failed
+            if(output < 40){
+                finalScore.style.color = 'red';
+            }else{
+                finalScore.style.color = '#62e133';
+            }
+    
+            if(output === Math.floor(score)){
+                clearInterval(timer);
+            }else{
+                output++;
+            }
+        }, 10);
+    }, 400);
 
-        if(output === Math.floor(score)){
-            clearInterval(timer);
-        }else{
-            output++;
-        }
-    }, 10);
 });
